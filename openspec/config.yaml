@@ -1,0 +1,19 @@
+# openspec/config.yaml
+schema: spec-driven
+
+context: |
+  Tech stack: TypeScript, React, Node.js
+  API conventions: RESTful, JSON responses
+  Testing: Vitest for unit tests, Playwright for e2e
+  Style: ESLint with Prettier, strict TypeScript
+
+  This will be a simple webpage that will show users a list of cities where it is 5 PM. The webpage will have a search bar to filter cities by name and a toggle to switch between light and dark mode.
+
+rules:
+  proposal:
+    - Include rollback plan
+    - Identify affected teams
+  specs:
+    - Use Given/When/Then format for scenarios
+  design:
+    - Include sequence diagrams for complex flows
