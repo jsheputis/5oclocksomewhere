@@ -46,8 +46,8 @@ fi
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
 
-echo "Building image ${IMAGE_NAME}:${IMAGE_TAG}..."
-docker build -f "$SCRIPT_DIR/Dockerfile" -t "${IMAGE_NAME}:${IMAGE_TAG}" "$REPO_ROOT"
+echo "Building image ${IMAGE_NAME}:${IMAGE_TAG} for linux/amd64..."
+docker build --platform linux/amd64 -f "$SCRIPT_DIR/Dockerfile" -t "${IMAGE_NAME}:${IMAGE_TAG}" "$REPO_ROOT"
 
 echo "Saving image to tarball..."
 docker save "${IMAGE_NAME}:${IMAGE_TAG}" -o "$TARBALL"
