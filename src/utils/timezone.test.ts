@@ -26,9 +26,13 @@ describe('getHappyHourCities', () => {
       expect(city).toHaveProperty('zone')
       expect(city).toHaveProperty('name')
       expect(city).toHaveProperty('time')
+      expect(city).toHaveProperty('flag')
+      expect(city).toHaveProperty('region')
       expect(typeof city.zone).toBe('string')
       expect(typeof city.name).toBe('string')
       expect(typeof city.time).toBe('string')
+      expect(typeof city.flag).toBe('string')
+      expect(typeof city.region).toBe('string')
     }
   })
 

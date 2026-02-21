@@ -7,11 +7,10 @@ import { CityList } from './components/CityList'
 import './App.css'
 
 function App() {
-  const [cities, setCities] = useState<HappyHourCity[]>([])
+  const [cities, setCities] = useState<HappyHourCity[]>(getHappyHourCities)
   const [search, setSearch] = useState('')
 
   useEffect(() => {
-    setCities(getHappyHourCities())
     const interval = setInterval(() => {
       setCities(getHappyHourCities())
     }, 60_000)
@@ -26,10 +25,10 @@ function App() {
 
   return (
     <div className="app">
-      <Header />
+      <Header cityCount={filtered.length} />
       <main className="main">
         <SearchBar value={search} onChange={setSearch} />
-        <CityList cities={filtered} />
+        <CityList cities={filtered} hasSearch={search.length > 0} />
       </main>
     </div>
   )

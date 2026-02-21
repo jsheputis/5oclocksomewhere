@@ -1,7 +1,11 @@
+import { getCountryCode, getFlagEmoji, getRegion } from './countryMap'
+
 export interface HappyHourCity {
   zone: string
   name: string
   time: string
+  flag: string
+  region: string
 }
 
 export function parseCityName(zone: string): string {
@@ -35,5 +39,7 @@ export function getHappyHourCities(): HappyHourCity[] {
         minute: '2-digit',
         hour12: true,
       }).format(now),
+      flag: getFlagEmoji(getCountryCode(zone)),
+      region: getRegion(zone),
     }))
 }

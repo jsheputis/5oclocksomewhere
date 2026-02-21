@@ -1,4 +1,4 @@
-## ADDED Requirements
+## MODIFIED Requirements
 
 ### Requirement: Toggle between light and dark themes
 
@@ -15,19 +15,3 @@ The system SHALL provide an icon-based toggle control that switches the entire p
 - **GIVEN** the page is displayed in dark theme
 - **WHEN** the user activates the theme toggle
 - **THEN** the page SHALL switch to light theme and the toggle icon SHALL change from a sun to a moon
-
-### Requirement: Persist theme preference
-
-The system SHALL persist the user's theme selection in `localStorage` so it survives page reloads.
-
-#### Scenario: Theme persists across reloads
-
-- **GIVEN** the user has selected dark theme
-- **WHEN** the user reloads the page
-- **THEN** the page SHALL load in dark theme
-
-#### Scenario: No stored preference defaults to light
-
-- **GIVEN** no theme preference exists in `localStorage`
-- **WHEN** the page is loaded
-- **THEN** the page SHALL display in light theme

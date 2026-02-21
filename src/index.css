@@ -1,13 +1,15 @@
 :root {
-  --bg: #ffffff;
-  --bg-card: #f4f4f5;
+  --bg: #fffbf5;
+  --bg-card: #ffffff;
   --text: #1a1a2e;
-  --text-muted: #6b7280;
+  --text-muted: #7c7c8a;
   --accent: #f59e0b;
-  --border: #e5e7eb;
+  --border: #e8e4df;
   --input-bg: #ffffff;
-  --button-bg: #f4f4f5;
+  --button-bg: #f5f0eb;
   --button-text: #1a1a2e;
+  --gradient-start: rgba(245, 158, 11, 0.06);
+  --gradient-end: rgba(255, 251, 245, 0);
 
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -19,15 +21,17 @@
 }
 
 [data-theme='dark'] {
-  --bg: #1a1a2e;
-  --bg-card: #16213e;
+  --bg: #0f0f1a;
+  --bg-card: #1a1a2e;
   --text: #e5e7eb;
   --text-muted: #9ca3af;
-  --accent: #f59e0b;
-  --border: #374151;
-  --input-bg: #16213e;
-  --button-bg: #16213e;
+  --accent: #fbbf24;
+  --border: #2d2d44;
+  --input-bg: #1a1a2e;
+  --button-bg: #1a1a2e;
   --button-text: #e5e7eb;
+  --gradient-start: rgba(99, 102, 241, 0.08);
+  --gradient-end: rgba(15, 15, 26, 0);
 }
 
 *,
@@ -40,8 +44,13 @@ body {
   margin: 0;
   min-height: 100vh;
   background-color: var(--bg);
+  background-image: radial-gradient(
+    ellipse at 50% 0%,
+    var(--gradient-start) 0%,
+    var(--gradient-end) 70%
+  );
   color: var(--text);
   transition:
-    background-color 0.2s,
-    color 0.2s;
+    background-color 0.3s,
+    color 0.3s;
 }
