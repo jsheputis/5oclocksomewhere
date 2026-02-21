@@ -15,15 +15,15 @@ This project serves as a proving ground for spec-driven development practices. T
 
 ## Tech Stack
 
-| Layer | Technology |
-|-------|-----------|
-| UI | React 19, TypeScript |
-| Build | Vite |
-| Unit Tests | Vitest |
-| E2E Tests | Playwright |
-| Server | Nginx (Alpine) |
-| Container | Docker (multi-stage build) |
-| Infrastructure | Proxmox LXC |
+| Layer          | Technology                 |
+| -------------- | -------------------------- |
+| UI             | React 19, TypeScript       |
+| Build          | Vite                       |
+| Unit Tests     | Vitest                     |
+| E2E Tests      | Playwright                 |
+| Server         | Nginx (Alpine)             |
+| Container      | Docker (multi-stage build) |
+| Infrastructure | Proxmox LXC                |
 
 ## Development
 

@@ -12,9 +12,11 @@ The app works locally but has no path to run on the home network. Adding a simpl
 ## Capabilities
 
 ### New Capabilities
+
 - `container-deploy`: Dockerfile, Nginx config, and deployment scripts for building and running the app in a Docker-based Proxmox LXC container
 
 ### Modified Capabilities
+
 _(none — no app behavior changes)_
 
 ## Impact

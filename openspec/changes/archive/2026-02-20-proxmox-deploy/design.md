@@ -5,12 +5,14 @@ The app is a static SPA (Vite + React + TypeScript) with no backend. The product
 ## Goals / Non-Goals
 
 **Goals:**
+
 - One-command deploy from a dev machine to a running service on Proxmox
 - Reproducible builds via Docker — same image runs identically everywhere
 - Minimal LXC footprint (no full VM overhead for a static site)
 - Easy teardown and redeploy
 
 **Non-Goals:**
+
 - CI/CD pipeline or automated builds on push
 - Multi-environment support (staging, production)
 - TLS termination (handled by the existing reverse proxy)
@@ -24,6 +26,7 @@ The app is a static SPA (Vite + React + TypeScript) with no backend. The product
 **Choice**: A two-stage Dockerfile — first stage uses `node:lts-alpine` to run `npm ci && npm run build`, second stage copies `dist/` into `nginx:alpine` and serves it.
 
 **Alternatives considered**:
+
 - **Single-stage with Node serving static files**: Larger image, unnecessary Node runtime in production.
 - **Build outside Docker, copy dist/ in**: Loses reproducibility — build depends on host Node version.
 
@@ -32,6 +35,7 @@ The app is a static SPA (Vite + React + TypeScript) with no backend. The product
 ### 2. Nginx configuration: SPA-friendly static serving
 
 **Choice**: Custom `nginx.conf` with:
+
 - `try_files $uri $uri/ /index.html` for SPA client-side routing fallback
 - Gzip compression for text assets
 - Cache-control headers for hashed assets (long cache) vs `index.html` (no cache)
@@ -42,6 +46,7 @@ The app is a static SPA (Vite + React + TypeScript) with no backend. The product
 ### 3. LXC setup: Debian-based container with Docker CE
 
 **Choice**: A bash script that uses the Proxmox `pct` CLI to:
+
 1. Create a privileged LXC container from a Debian template
 2. Install Docker CE inside the LXC
 3. Configure the container to start on boot
@@ -49,6 +54,7 @@ The app is a static SPA (Vite + React + TypeScript) with no backend. The product
 The script accepts parameters for container ID, hostname, storage, and network bridge with sensible defaults.
 
 **Alternatives considered**:
+
 - **Unprivileged LXC**: Docker inside unprivileged LXC requires extra kernel config and is fragile. Not worth it for a home lab.
 - **Full VM**: Works but wastes resources for a static site. LXC is ~10x lighter.
 - **Run Nginx directly in LXC (no Docker)**: Simpler but loses the reproducible image benefit. Harder to update — Docker lets you swap images atomically.
@@ -58,6 +64,7 @@ The script accepts parameters for container ID, hostname, storage, and network b
 ### 4. Deploy script: build, transfer, restart
 
 **Choice**: A single `deploy.sh` script that:
+
 1. Builds the Docker image locally
 2. Saves it as a tarball (`docker save`)
 3. Transfers the tarball to the LXC via `scp`
@@ -66,6 +73,7 @@ The script accepts parameters for container ID, hostname, storage, and network b
 The script takes the LXC host/IP as an argument.
 
 **Alternatives considered**:
+
 - **Push to a registry (Docker Hub, private registry)**: Adds infrastructure (registry) for a single-app home lab. Overkill.
 - **Build on the LXC itself**: Requires Node.js toolchain on the LXC, defeats the purpose of Docker isolation.
 
@@ -74,6 +82,7 @@ The script takes the LXC host/IP as an argument.
 ### 5. File layout: `deploy/` directory
 
 **Choice**:
+
 ```
 deploy/
 ├── Dockerfile

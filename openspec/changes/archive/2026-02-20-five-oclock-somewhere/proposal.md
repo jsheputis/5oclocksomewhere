@@ -14,11 +14,13 @@ It's always 5 o'clock somewhere — but where? This is a playful proof-of-concep
 ## Capabilities
 
 ### New Capabilities
+
 - `happy-hour-display`: Core feature — resolve all IANA timezones, determine which are in the 5 PM hour, and render them as a live-updating city list with display-friendly names
 - `city-search`: Text filter that narrows the visible city list by name as the user types
 - `theme-toggle`: Light/dark mode switch with CSS-level theming
 
 ### Modified Capabilities
+
 _(none — greenfield project)_
 
 ## Impact

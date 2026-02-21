@@ -5,11 +5,13 @@ Greenfield SPA — no existing code, no legacy constraints. The entire app runs 
 ## Goals / Non-Goals
 
 **Goals:**
+
 - Ship a working, playful SPA that shows where it's 5 PM right now
 - Keep the codebase minimal — easy to read, easy to modify
 - Modern tooling with standard conventions (Vite, React, TypeScript, ESLint/Prettier)
 
 **Non-Goals:**
+
 - Production deployment, CI/CD, hosting
 - Enriched city mappings beyond IANA zone names
 - Animations, illustrations, or elaborate visual design
@@ -23,6 +25,7 @@ Greenfield SPA — no existing code, no legacy constraints. The entire app runs 
 **Choice**: Use `Intl.supportedValuesOf('timeZone')` for the zone list and `Intl.DateTimeFormat` to resolve the current hour in each zone.
 
 **Alternatives considered**:
+
 - **Bundled timezone library** (e.g., `date-fns-tz`, `luxon`): Adds a dependency for something the browser already does natively. Unnecessary for a PoC.
 - **External API** (e.g., WorldTimeAPI): Adds network dependency, latency, and rate limits. Overkill.
 
@@ -33,6 +36,7 @@ Greenfield SPA — no existing code, no legacy constraints. The entire app runs 
 **Choice**: Transform IANA zone IDs like `America/New_York` → "New York" by taking the city segment after the last `/` and replacing underscores with spaces.
 
 **Alternatives considered**:
+
 - **Curated city-to-timezone mapping**: Richer results but requires manual maintenance and is scope creep for a PoC.
 
 **Rationale**: Simple string parsing, no maintenance, covers ~400 zones. Some names will be obscure (`America/Indiana/Knox`) but that's part of the charm for a playful PoC.
@@ -56,6 +60,7 @@ App
 **Choice**: A `useEffect` in `App` sets an interval that re-evaluates the timezone list every 60 seconds, updating state to reflect which cities are currently in the 5 PM hour.
 
 **Alternatives considered**:
+
 - **Recalculate on every render**: Wasteful — timezone data doesn't change sub-minute.
 - **Web Workers**: Overengineered for ~400 timezone checks.
 
@@ -66,6 +71,7 @@ App
 **Choice**: Define light and dark color palettes as CSS custom properties on `:root`. Toggle by setting `data-theme="dark"` on the `<html>` element. Store preference in `localStorage`.
 
 **Alternatives considered**:
+
 - **CSS-in-JS / styled-components**: Adds a dependency for two color schemes.
 - **Tailwind dark mode**: Adds Tailwind as a dependency for minimal gain.
 
